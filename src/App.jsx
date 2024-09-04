@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Home from './components/Home';
@@ -12,7 +12,23 @@ import './App.css';
 function App() {
   const [breweries, setBreweries] = useState([]);
   const [hasSearched, setHasSearched] = useState(false);
-  const [favourites, setFavourites] = useState([]);
+  
+  const [favourites, setFavourites] = useState(() => {
+    const savedFavourites = localStorage.getItem('favourites');
+    return savedFavourites ? JSON.parse(savedFavourites) : [];
+  });
+    
+   
+  useEffect(() => {
+    const savedFavourites = JSON.parse(localStorage.getItem('favourites')) || [];
+    setFavourites(savedFavourites);
+  }, []);
+
+  
+  useEffect(() => {
+    localStorage.setItem('favourites', JSON.stringify(favourites));
+  }, [favourites]);
+  
 
   const fetchAllBreweries = async (url, allBreweries = [], page = 1) => {
     try {
