@@ -9,9 +9,10 @@ function About() {
     <section className='about-section'>
       <div className="hero-body has-text-centered">
         <div className="container">
-          <p className="title">
+          <h1 className="title">
             About Page
-          </p>
+          </h1>
+          <p>This brewery search website was made by Esosa and Will for a project with General Assembly.<br/> We used the Open Brewery DB API to fetch the data.</p>
         </div>
       </div>
     </section>

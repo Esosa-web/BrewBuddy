@@ -5,6 +5,7 @@ import Home from './components/Home';
 import Navbar from './components/Navbar';
 import Search from './components/Search';
 import About from './components/About';
+import Favourites from './components/Favourites';
 
 import './App.css';
 
@@ -59,6 +60,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />}/>
           <Route path="/search" element={<Search onSearch={fetchBreweries} />} />
+          <Route path="/favourites" element={<Favourites />}/>
         </Routes>
       </div>
     </Router>
