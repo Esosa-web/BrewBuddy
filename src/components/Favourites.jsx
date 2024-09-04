@@ -1,5 +1,6 @@
 import React from "react";
 
+
 function Favourites({ favourites, onRemoveFromFavourites }) {
   React.useEffect(() => {
     console.log("The Favourites Page has mounted");
@@ -18,7 +19,7 @@ function Favourites({ favourites, onRemoveFromFavourites }) {
               <div className="card">
                 <div className="card-content">
                   <div className="content">
-                    <h3 className="title is-5">{brewery.name}</h3>
+                    <h3 className="title is-5 brewery-name">{brewery.name}</h3>
                     <p><strong>Brewery Type:</strong> {brewery.brewery_type}</p>
                     <p><strong>City:</strong> {brewery.city}</p>
                     <p><strong>Country:</strong> {brewery.country}</p>

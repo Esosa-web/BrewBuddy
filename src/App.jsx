@@ -22,8 +22,7 @@ function App() {
   useEffect(() => {
     const savedFavourites = JSON.parse(localStorage.getItem('favourites')) || [];
     setFavourites(savedFavourites);
-  }, []);
-
+  }, [])
   
   useEffect(() => {
     localStorage.setItem('favourites', JSON.stringify(favourites));

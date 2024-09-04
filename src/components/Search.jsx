@@ -87,19 +87,23 @@ function Search({ onSearch, breweries, hasSearched, onAddToFavourites }) {
       <div className="mt-5">
         {hasSearched && breweries.length === 0 && <p>No breweries found.</p>}
         {breweries.length > 0 && (
-          <ul>
+          <div className="columns is-multiline">
             {breweries.map((brewery) => (
-              <li key={brewery.id} className="box mb-3">
-                <p><strong>Name:</strong> {brewery.name}</p>
-                <p><strong>Brewery Type:</strong> {brewery.brewery_type}</p>
-                <p><strong>City:</strong> {brewery.city}</p>
-                <p><strong>Country:</strong> {brewery.country}</p>
-                <p><strong>Phone Number:</strong> {brewery.phone}</p>
-                <p><strong>Website:</strong> <a href={brewery.website_url} target="_blank" rel="noopener noreferrer">{brewery.website_url}</a></p>
-                <button className="button is-danger mt-2" onClick={() => onAddToFavourites(brewery)}>Save to Favourites</button>
-              </li>
+              <div key={brewery.id} className="column is-one-third">
+                <div className="card">
+                  <div className="card-content">
+                    <h3 className="title is-5">{brewery.name}</h3>
+                    <p><strong>Brewery Type:</strong> {brewery.brewery_type}</p>
+                    <p><strong>City:</strong> {brewery.city}</p>
+                    <p><strong>Country:</strong> {brewery.country}</p>
+                    <p><strong>Phone Number:</strong> {brewery.phone}</p>
+                    <p><strong>Website:</strong> <a href={brewery.website_url} target="_blank" rel="noopener noreferrer">{brewery.website_url}</a></p>
+                    <button className="button is-danger mt-2" onClick={() => onAddToFavourites(brewery)}>Save to Favourites</button>
+                  </div>
+                </div>
+              </div>
             ))}
-          </ul>
+          </div>
         )}
       </div>
     </div>

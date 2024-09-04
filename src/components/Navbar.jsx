@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function Navbar() {
+  const [isActive, setIsActive] = useState(false);
+
+  const toggleNavbar = () => {
+    setIsActive(!isActive);
+  };
+
   return (
     <nav className="navbar is-primary is-fixed-top" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
@@ -10,11 +16,12 @@ function Navbar() {
         </Link>
 
         <a
-          role="button"
-          className="navbar-burger"
+          role="button" 
+          className={`navbar-burger ${isActive ? 'is-active' : ''}`}
           aria-label="menu"
-          aria-expanded="false"
+          aria-expanded={isActive ? 'true' : 'false'}
           data-target="navbarBasic"
+          onClick={toggleNavbar}
         >
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -22,7 +29,7 @@ function Navbar() {
         </a>
       </div>
 
-      <div id="navbarBasic" className="navbar-menu">
+      <div id="navbarBasic" className={`navbar-menu ${isActive ? 'is-active' : ''}`}>
         <div className="navbar-start">
           <Link to="/" className="navbar-item">
             Home
