@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Search({ onSearch }) {
+function Search({ onSearch, breweries, hasSearched }) {
   const [citySearchTerm, setCitySearchTerm] = useState('');
   const [stateSearchTerm, setStateSearchTerm] = useState('');
   const [countrySearchTerm, setCountrySearchTerm] = useState('');
@@ -25,41 +25,47 @@ function Search({ onSearch }) {
 
   return (
     <div>
-      <input
-        type="text"
-        value={citySearchTerm}
-        onChange={(e) => setCitySearchTerm(e.target.value)}
-        placeholder="Search by city"
-        onKeyUp={(e) => e.key === 'Enter' && handleCitySearch()}
-      />
-      <button onClick={handleCitySearch}>Search City</button>
+      <div>
+        <input
+          type="text"
+          value={citySearchTerm}
+          onChange={(e) => setCitySearchTerm(e.target.value)}
+          placeholder="Search by city"
+          onKeyUp={(e) => e.key === 'Enter' && handleCitySearch()}
+        />
+        <button onClick={handleCitySearch}>Search City</button>
 
-      <input
-        type="text"
-        value={stateSearchTerm}
-        onChange={(e) => setStateSearchTerm(e.target.value)}
-        placeholder="Search by state"
-        onKeyUp={(e) => e.key === 'Enter' && handleStateSearch()}
-      />
-      <button onClick={handleStateSearch}>Search State</button>
+        <input
+          type="text"
+          value={stateSearchTerm}
+          onChange={(e) => setStateSearchTerm(e.target.value)}
+          placeholder="Search by state"
+          onKeyUp={(e) => e.key === 'Enter' && handleStateSearch()}
+        />
+        <button onClick={handleStateSearch}>Search State</button>
 
-      <input
-        type="text"
-        value={countrySearchTerm}
-        onChange={(e) => setCountrySearchTerm(e.target.value)}
-        placeholder="Search by country"
-        onKeyUp={(e) => e.key === 'Enter' && handleCountrySearch()}
-      />
-      <button onClick={handleCountrySearch}>Search Country</button>
+        <input
+          type="text"
+          value={countrySearchTerm}
+          onChange={(e) => setCountrySearchTerm(e.target.value)}
+          placeholder="Search by country"
+          onKeyUp={(e) => e.key === 'Enter' && handleCountrySearch()}
+        />
+        <button onClick={handleCountrySearch}>Search Country</button>
+      </div>
+
+      <div>
+        {hasSearched && breweries.length === 0 && <p>No breweries found.</p>}
+        {breweries.length > 0 && (
+          <ul>
+            {breweries.map((brewery, index) => (
+              <li key={index}>{brewery}</li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }
 
 export default Search;
-
-
-
-
-
-
-
