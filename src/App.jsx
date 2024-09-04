@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Home from './components/Home';
+import Navbar from './components/Navbar';
 import Search from './components/Search';
+import About from './components/About';
+
 import './App.css';
 
 function App() {
@@ -50,10 +53,12 @@ function App() {
 
   return (
     <Router>
+      <Navbar />
       <div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/" element={<Search onSearch={fetchBreweries} />} />
+          <Route path="/about" element={<About />}/>
+          <Route path="/search" element={<Search onSearch={fetchBreweries} />} />
         </Routes>
       </div>
     </Router>
