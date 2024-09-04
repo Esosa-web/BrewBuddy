@@ -7,7 +7,8 @@ function Home() {
 
   return (
     <section className="home-section">
-          <p className="title">BrewBuddy</p>
+          <p className="title">Brew Buddy</p>
+          
     </section>
   )
 }

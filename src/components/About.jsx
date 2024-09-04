@@ -1,22 +1,26 @@
-import React from "react"
+import React from "react";
 
 function About() {
   React.useEffect(() => {
-    console.log("The About Page has mounted")
-  }, [])
+    console.log("The About Page has mounted");
+  }, []);
 
   return (
-    <section className='about-section'>
-      <div className="hero-body has-text-centered">
-        <div className="container">
-          <h1 className="title">
-            About Page
-          </h1>
-          <p>This brewery search website was made by Esosa and Will for a project with General Assembly.<br/> We used the Open Brewery DB API to fetch the data.</p>
+    <section className="section">
+      <div className="hero is-info">
+        <div className="hero-body">
+          <div className="container has-text-centered">
+            <h1 className="title is-2">About Page</h1><br/>
+            <p className="subtitle is-4">
+              This brewery search website was made by Esosa and Will for a project with General Assembly.
+              <br /><br/>
+              We used the <a href="https://www.openbrewerydb.org/" target="_blank" rel="noopener noreferrer" className="has-text-link">Open Brewery DB API</a> to fetch the data.
+            </p>
+          </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
 
-export default About
+export default About;

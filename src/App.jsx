@@ -12,7 +12,7 @@ import './App.css';
 function App() {
   const [breweries, setBreweries] = useState([]);
   const [hasSearched, setHasSearched] = useState(false);
-  const [favourites, setFavourites] = useState([])
+  const [favourites, setFavourites] = useState([]);
 
   const fetchAllBreweries = async (url, allBreweries = [], page = 1) => {
     try {
@@ -32,36 +32,33 @@ function App() {
       return [];
     }
   };
- 
+
   const addToFavourites = (brewery) => {
-    const newFavourites = structuredClone(favourites)
-    newFavourites.push(structuredClone(brewery))
-    setFavourites(newFavourites)
-  }
-  
+    if (!favourites.some(fav => fav.id === brewery.id)) {
+      setFavourites([...favourites, brewery]);
+    }
+  };
+
   const removeFromFavourites = (breweryId) => {
-    setFavourites(favourites.filter(brewery => brewery.id !== breweryId)
-    )
-  } 
-
-
+    setFavourites(favourites.filter(brewery => brewery.id !== breweryId));
+  };
 
   const fetchBreweries = async ({ city, state, country }) => {
     try {
       let url = 'https://api.openbrewerydb.org/v1/breweries?';
-  
+
       if (city) {
         url += `by_city=${city}`;
-      } 
+      }
       if (state) {
         url += `&by_state=${state}`;
-      } 
+      }
       if (country) {
         url += `&by_country=${country}`;
       }
-  
+
       const allBreweries = await fetchAllBreweries(url);
-      setBreweries(allBreweries.map((brewery) => brewery.name));
+      setBreweries(allBreweries);
       setHasSearched(true);
     } catch (error) {
       console.error(error.message);
@@ -74,13 +71,31 @@ function App() {
       <div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />}/>
-          <Route path="/search" element={<Search onSearch={fetchBreweries} breweries={breweries} hasSearched={hasSearched} />} />
-          <Route path="/favourites" element={<Favourites favourites={favourites} removeFromFavourites = {removeFromFavourites} />}/>
-          
+          <Route path="/about" element={<About />} />
+          <Route 
+            path="/search" 
+            element={
+              <Search 
+                onSearch={fetchBreweries} 
+                breweries={breweries} 
+                hasSearched={hasSearched} 
+                onAddToFavourites={addToFavourites} 
+              />
+            } 
+          />
+          <Route 
+            path="/favourites" 
+            element={
+              <Favourites 
+                favourites={favourites} 
+                onRemoveFromFavourites={removeFromFavourites} 
+              />
+            } 
+          />
         </Routes>
       </div>
     </Router>
   );
 }
+
 export default App;
