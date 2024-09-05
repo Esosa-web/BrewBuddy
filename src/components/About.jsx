@@ -14,7 +14,8 @@ function About() {
             <p className="subtitle is-4">
               This brewery search website was made by Esosa and Will for a project with General Assembly.
               <br /><br/>
-              We used the <a href="https://www.openbrewerydb.org/" target="_blank" rel="noopener noreferrer" className="has-text-link">Open Brewery DB API</a> to fetch the data.
+              We used the <a href="https://www.openbrewerydb.org/" target="_blank" rel="noopener noreferrer" className="has-text-link">Open Brewery DB API</a> to fetch the data for the breweries.<br/>
+              We used <a href="https://www.mapbox.com/" target="_blank" rel="noopener noreferrer" className="has-text-link">Mapbox</a> to display the map data.
             </p>
           </div>
         </div>
