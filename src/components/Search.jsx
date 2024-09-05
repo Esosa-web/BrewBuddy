@@ -4,29 +4,36 @@ function Search({ onSearch, breweries, hasSearched, onAddToFavourites }) {
   const [citySearchTerm, setCitySearchTerm] = useState('');
   const [stateSearchTerm, setStateSearchTerm] = useState('');
   const [countrySearchTerm, setCountrySearchTerm] = useState('');
+  const [loading, setLoading] = useState(false); 
   const [currentPage, setCurrentPage] = useState(1);
   const [breweriesPerPage] = useState(9); 
 
   useEffect(() => {
-    setCurrentPage(1);
+    setCurrentPage(1); 
   }, [breweries]);
 
-  const handleCitySearch = () => {
+  const handleCitySearch = async () => {
     if (!citySearchTerm.trim()) return;
-    onSearch({ city: citySearchTerm.trim() });
+    setLoading(true); // Start loading
+    await onSearch({ city: citySearchTerm.trim() });
     setCitySearchTerm('');
+    setLoading(false); // Stop loading
   };
 
-  const handleStateSearch = () => {
+  const handleStateSearch = async () => {
     if (!stateSearchTerm.trim()) return;
-    onSearch({ state: stateSearchTerm.trim() });
+    setLoading(true); // Start loading
+    await onSearch({ state: stateSearchTerm.trim() });
     setStateSearchTerm('');
+    setLoading(false); // Stop loading
   };
 
-  const handleCountrySearch = () => {
+  const handleCountrySearch = async () => {
     if (!countrySearchTerm.trim()) return;
-    onSearch({ country: countrySearchTerm.trim() });
+    setLoading(true); // Start loading
+    await onSearch({ country: countrySearchTerm.trim() });
     setCountrySearchTerm('');
+    setLoading(false); // Stop loading
   };
 
   
@@ -42,7 +49,6 @@ function Search({ onSearch, breweries, hasSearched, onAddToFavourites }) {
     if (newPage < 1 || newPage > totalPages) return;
     setCurrentPage(newPage);
   };
-
 
   return (
     <div className="container mt-5">
@@ -60,7 +66,13 @@ function Search({ onSearch, breweries, hasSearched, onAddToFavourites }) {
                   placeholder="Enter city"
                   onKeyUp={(e) => e.key === 'Enter' && handleCitySearch()}
                 />
-                <button className="button is-link mt-3" onClick={handleCitySearch}>Search City</button>
+                <button 
+                  className={`button is-link mt-3 ${loading ? 'is-loading' : ''}`} 
+                  onClick={handleCitySearch}
+                  disabled={loading} // Disable button when loading
+                >
+                  Search City
+                </button>
               </div>
             </div>
           </div>
@@ -79,7 +91,13 @@ function Search({ onSearch, breweries, hasSearched, onAddToFavourites }) {
                   placeholder="Enter state"
                   onKeyUp={(e) => e.key === 'Enter' && handleStateSearch()}
                 />
-                <button className="button is-link mt-3" onClick={handleStateSearch}>Search State</button>
+                <button 
+                  className={`button is-link mt-3 ${loading ? 'is-loading' : ''}`} 
+                  onClick={handleStateSearch}
+                  disabled={loading} // Disable button when loading
+                >
+                  Search State
+                </button>
               </div>
             </div>
           </div>
@@ -98,7 +116,13 @@ function Search({ onSearch, breweries, hasSearched, onAddToFavourites }) {
                   placeholder="Enter country"
                   onKeyUp={(e) => e.key === 'Enter' && handleCountrySearch()}
                 />
-                <button className="button is-link mt-3" onClick={handleCountrySearch}>Search Country</button>
+                <button 
+                  className={`button is-link mt-3 ${loading ? 'is-loading' : ''}`} 
+                  onClick={handleCountrySearch}
+                  disabled={loading} // Disable button when loading
+                >
+                  Search Country
+                </button>
               </div>
             </div>
           </div>
@@ -126,7 +150,6 @@ function Search({ onSearch, breweries, hasSearched, onAddToFavourites }) {
                 </div>
               ))}
             </div>
-            
             <nav className="pagination is-centered mt-5">
               <button
                 className="button is-link"
