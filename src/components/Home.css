@@ -120,3 +120,15 @@
   .cta-section {
     background: linear-gradient(to right, #f6d365, #fda085);
   }
+  /* Custon styling for the box over the image */
+  .opaque-box {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .fade-in,
+  .fade-in-delay {
+    color: #333333;
+  }

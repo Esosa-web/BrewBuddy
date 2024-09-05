@@ -12,7 +12,7 @@ function Navbar() {
     <nav className="navbar is-primary is-fixed-top" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <Link to="/" className="navbar-item">
-          <h1 className="title is-4">Brew Buddy</h1>
+          <h1 className="title is-3">Brew Buddy 🍺</h1>
         </Link>
 
         <a

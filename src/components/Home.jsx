@@ -1,30 +1,39 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
-import beerImage from '../assets/beer-toast.jpg'
+import beerImage from '../assets/beer-2370783.jpg'
 
 function Home() {
   return (
     <div className="home-container">
       {/* Hero Section */}
       <section className="hero is-primary is-bold is-fullheight-with-navbar animated-bg">
-        <div className="hero-body" style = {{
-          backgroundImage: `url(${beerImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}>
+        <div
+          className="hero-body"
+          style={{
+            backgroundImage: `url(${beerImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            
+          }}
+        >
           <div className="container">
-            <h1 className="title is-1 has-text-centered fade-in">
-              Welcome to Brew Buddy
-            </h1>
-            <h2 className="subtitle is-3 has-text-centered fade-in-delay">
-              Your ultimate companion for discovering amazing breweries!
-            </h2>
-            <div className="buttons is-centered mt-6">
-              <Link to="/search" className="button is-light is-large pulse-button">
-                Start Exploring
-              </Link>
+            {/* Rounded Opaque Text Box */}
+            <div className="box has-text-centered rounded-box opaque-box">
+              <h1 className="title is-1 fade-in">Welcome to Brew Buddy</h1>
+              <h2 className="subtitle is-3 fade-in-delay">
+                Your ultimate companion for discovering amazing breweries!
+              </h2>
+              <div className="buttons is-centered mt-6">
+                <Link to="/search" className="button is-light is-large pulse-button">
+                  Start Exploring
+                </Link>
+              </div>
             </div>
+            {/* Image Credit */}
+            <p className="has-text-centered is-size-7 mt-4 image-credit">
+              <a href="https://pixabay.com/photos/beer-varieties-different-sorts-2370783/">Image by PeterKraayvanger</a>
+            </p>
           </div>
         </div>
       </section>
