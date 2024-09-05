@@ -2,6 +2,7 @@
 .favourites-wrapper {
     display: flex;
     justify-content: center;
+    margin-top: 20px;
   }
   
   /* Set minimum width and flex properties for consistent card sizing */
@@ -11,6 +12,7 @@
     flex-direction: column;
     min-width: 300px; /* Prevent cards from becoming too narrow */
     max-width: 400px; /* Limit maximum width for better readability */
+    margin-bottom: 20px;
   }
   
   /* Ensure content fills the card and button stays at bottom */
@@ -53,3 +55,12 @@
     margin-left: auto;
     margin-right: auto;
   }
+
+  .map-container {
+    width: 100%;
+    height: 500px;
+    margin-bottom: 20px;
+  }
+ 
+  
+  
