@@ -1,0 +1,55 @@
+/* Wrapper for centering the columns */
+.favourites-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Set minimum width and flex properties for consistent card sizing */
+  .favourite-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-width: 300px; /* Prevent cards from becoming too narrow */
+    max-width: 400px; /* Limit maximum width for better readability */
+  }
+  
+  /* Ensure content fills the card and button stays at bottom */
+  .favourite-card .card-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .favourite-card .button {
+    margin-top: auto;
+  }
+  
+  /* Adjust layout for large screens */
+  @media screen and (min-width: 1024px) {
+    .column.is-one-third-widescreen {
+      flex: 0 0 33.3333%;
+      max-width: 33.3333%;
+    }
+  }
+  
+  /* Adjust layout for medium-sized screens */
+  @media screen and (max-width: 1023px) and (min-width: 769px) {
+    .column.is-half-desktop {
+      flex: 0 0 50%;
+      max-width: 50%; /* Show 2 cards per row on medium screens */
+    }
+  }
+  
+  /* Adjust layout for small screens */
+  @media screen and (max-width: 768px) {
+    .column.is-full-tablet {
+      flex: 0 0 100%;
+      max-width: 100%; /* Show 1 card per row on small screens */
+    }
+  }
+  
+  /* Center single card */
+  .columns:only-child {
+    margin-left: auto;
+    margin-right: auto;
+  }
