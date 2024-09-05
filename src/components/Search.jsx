@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Search({ onSearch, breweries, hasSearched, onAddToFavourites }) {
   const [citySearchTerm, setCitySearchTerm] = useState('');
   const [stateSearchTerm, setStateSearchTerm] = useState('');
   const [countrySearchTerm, setCountrySearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [breweriesPerPage] = useState(9); 
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [breweries]);
 
   const handleCitySearch = () => {
     if (!citySearchTerm.trim()) return;
@@ -22,6 +28,21 @@ function Search({ onSearch, breweries, hasSearched, onAddToFavourites }) {
     onSearch({ country: countrySearchTerm.trim() });
     setCountrySearchTerm('');
   };
+
+  
+  const totalPages = Math.ceil(breweries.length / breweriesPerPage);
+
+  
+  const currentBreweries = breweries.slice(
+    (currentPage - 1) * breweriesPerPage,
+    currentPage * breweriesPerPage
+  );
+
+  const handlePageChange = (newPage) => {
+    if (newPage < 1 || newPage > totalPages) return;
+    setCurrentPage(newPage);
+  };
+
 
   return (
     <div className="container mt-5">
@@ -86,23 +107,43 @@ function Search({ onSearch, breweries, hasSearched, onAddToFavourites }) {
 
       <div className="mt-5">
         {hasSearched && breweries.length === 0 && <p>No breweries found.</p>}
-        {breweries.length > 0 && (
-          <div className="columns is-multiline">
-            {breweries.map((brewery) => (
-              <div key={brewery.id} className="column is-one-third">
-                <div className="card">
-                  <div className="card-content">
-                    <h3 className="title is-5">{brewery.name}</h3>
-                    <p><strong>Brewery Type:</strong> {brewery.brewery_type}</p>
-                    <p><strong>City:</strong> {brewery.city}</p>
-                    <p><strong>Country:</strong> {brewery.country}</p>
-                    <p><strong>Phone Number:</strong> {brewery.phone}</p>
-                    <p><strong>Website:</strong> <a href={brewery.website_url} target="_blank" rel="noopener noreferrer">{brewery.website_url}</a></p>
-                    <button className="button is-danger mt-2" onClick={() => onAddToFavourites(brewery)}>Save to Favourites</button>
+        {currentBreweries.length > 0 && (
+          <div>
+            <div className="columns is-multiline">
+              {currentBreweries.map((brewery) => (
+                <div key={brewery.id} className="column is-one-third">
+                  <div className="card">
+                    <div className="card-content">
+                      <h3 className="title is-5">{brewery.name}</h3>
+                      <p><strong>Brewery Type:</strong> {brewery.brewery_type}</p>
+                      <p><strong>City:</strong> {brewery.city}</p>
+                      <p><strong>Country:</strong> {brewery.country}</p>
+                      <p><strong>Phone Number:</strong> {brewery.phone}</p>
+                      <p><strong>Website:</strong> <a href={brewery.website_url} target="_blank" rel="noopener noreferrer">{brewery.website_url}</a></p>
+                      <button className="button is-danger mt-2" onClick={() => onAddToFavourites(brewery)}>Save to Favourites</button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+            
+            <nav className="pagination is-centered mt-5">
+              <button
+                className="button is-link"
+                disabled={currentPage === 1}
+                onClick={() => handlePageChange(currentPage - 1)}
+              >
+                Previous
+              </button>
+              <button
+                className="button is-link"
+                disabled={currentPage === totalPages}
+                onClick={() => handlePageChange(currentPage + 1)}
+              >
+                Next
+              </button>
+              <p className="ml-2">Page {currentPage} of {totalPages}</p>
+            </nav>
           </div>
         )}
       </div>
