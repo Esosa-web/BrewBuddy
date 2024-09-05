@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "./Favourites.css";
 
-
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
 
 function Favourites({ favourites, onRemoveFromFavourites }) {
@@ -10,7 +9,6 @@ function Favourites({ favourites, onRemoveFromFavourites }) {
 
   useEffect(() => {
     if (favourites.length > 0 && mapRef.current) {
-      // Initialize the Mapbox map
       const map = new mapboxgl.Map({
         container: mapRef.current,
         style: "mapbox://styles/mapbox/streets-v11",
@@ -27,9 +25,9 @@ function Favourites({ favourites, onRemoveFromFavourites }) {
             .addTo(map);
 
           const popup = new mapboxgl.Popup({
-            offset: 25, 
-            closeButton: false, 
-            closeOnClick: false, 
+            offset: 25,
+            closeButton: false,
+            closeOnClick: false,
           }).setText(brewery.name);
 
           marker.setPopup(popup);
@@ -44,59 +42,45 @@ function Favourites({ favourites, onRemoveFromFavourites }) {
 
   return (
     <div className="container mt-5">
-      <h2 className="title is-3">Favourites</h2><br/>
-      <h3 className="title is-5">Your favourites will appear below.</h3>
-      <h3 className="title is-6">If your favourited brewery has geolocation logged, it will also appear on the map below!</h3>
+      <h2 className="title is-3 has-text-centered">Favourites</h2>
+      <h3 className="subtitle is-5 has-text-centered">Your favourites will appear below.</h3>
+      <h3 className="subtitle is-6 has-text-centered">If your favourited brewery has geolocation logged, it will also appear on the map below!</h3>
 
-      {/* Map container */}
-      <div
-        ref={mapRef}
-        className="map-container"
-        style={{ width: "100%", height: "500px", marginBottom: "20px" }}
-      />
+      <div ref={mapRef} className="map-container" />
 
       {favourites.length === 0 ? (
-        <p>No favourites added yet.</p>
+        <p className="has-text-centered mt-4">No favourites added yet.</p>
       ) : (
         <div className="favourites-wrapper">
           <div className="columns is-multiline">
             {favourites.map((brewery) => (
-              <div
-                className="column is-one-third-widescreen is-half-desktop is-full-tablet"
-                key={brewery.id}
-              >
+              <div className="column is-one-third-widescreen is-half-desktop is-full-tablet" key={brewery.id}>
                 <div className="card favourite-card">
                   <div className="card-content">
-                    <h3 className="title is-5">{brewery.name}</h3>
-                    <p>
-                      <strong>Brewery Type:</strong> {brewery.brewery_type}
-                    </p>
-                    <p>
-                      <strong>City:</strong> {brewery.city}
-                    </p>
-                    <p>
-                      <strong>Country:</strong> {brewery.country}
-                    </p>
-                    <p>
-                      <strong>Phone Number:</strong> {brewery.phone}
-                    </p>
+                    <h3 className="title is-4 mb-3">{brewery.name}</h3>
+                    <p><strong>Type:</strong> {brewery.brewery_type}</p>
+                    <p><strong>City:</strong> {brewery.city}</p>
+                    <p><strong>Country:</strong> {brewery.country}</p>
+                    <p><strong>Phone:</strong> {brewery.phone || 'N/A'}</p>
                     <p>
                       <strong>Website:</strong>{" "}
-                      <a
-                        href={brewery.website_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {brewery.website_url}
-                      </a>
+                      {brewery.website_url ? (
+                        <a href={brewery.website_url} target="_blank" rel="noopener noreferrer">
+                          Visit
+                        </a>
+                      ) : (
+                        'N/A'
+                      )}
                     </p>
+                  </div>
+                  <footer className="card-footer">
                     <button
-                      className="button is-danger mt-3"
+                      className="card-footer-item button is-danger"
                       onClick={() => onRemoveFromFavourites(brewery.id)}
                     >
                       Remove from Favourites
                     </button>
-                  </div>
+                  </footer>
                 </div>
               </div>
             ))}
