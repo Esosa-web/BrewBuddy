@@ -1,13 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
+import beerImage from '../assets/beer-toast.jpg'
 
 function Home() {
   return (
     <div className="home-container">
       {/* Hero Section */}
       <section className="hero is-primary is-bold is-fullheight-with-navbar animated-bg">
-        <div className="hero-body">
+        <div className="hero-body" style = {{
+          backgroundImage: `url(${beerImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}>
           <div className="container">
             <h1 className="title is-1 has-text-centered fade-in">
               Welcome to Brew Buddy

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './Search.css';
 
 function Search({ onSearch, breweries, hasSearched, onAddToFavourites }) {
   const [citySearchTerm, setCitySearchTerm] = useState('');
@@ -14,32 +15,30 @@ function Search({ onSearch, breweries, hasSearched, onAddToFavourites }) {
 
   const handleCitySearch = async () => {
     if (!citySearchTerm.trim()) return;
-    setLoading(true); // Start loading
+    setLoading(true);
     await onSearch({ city: citySearchTerm.trim() });
     setCitySearchTerm('');
-    setLoading(false); // Stop loading
+    setLoading(false);
   };
 
   const handleStateSearch = async () => {
     if (!stateSearchTerm.trim()) return;
-    setLoading(true); // Start loading
+    setLoading(true);
     await onSearch({ state: stateSearchTerm.trim() });
     setStateSearchTerm('');
-    setLoading(false); // Stop loading
+    setLoading(false);
   };
 
   const handleCountrySearch = async () => {
     if (!countrySearchTerm.trim()) return;
-    setLoading(true); // Start loading
+    setLoading(true);
     await onSearch({ country: countrySearchTerm.trim() });
     setCountrySearchTerm('');
-    setLoading(false); // Stop loading
+    setLoading(false);
   };
 
-  
   const totalPages = Math.ceil(breweries.length / breweriesPerPage);
 
-  
   const currentBreweries = breweries.slice(
     (currentPage - 1) * breweriesPerPage,
     currentPage * breweriesPerPage
@@ -48,6 +47,10 @@ function Search({ onSearch, breweries, hasSearched, onAddToFavourites }) {
   const handlePageChange = (newPage) => {
     if (newPage < 1 || newPage > totalPages) return;
     setCurrentPage(newPage);
+  };
+
+  const handleAddToFavourites = (brewery) => {
+    onAddToFavourites(brewery);
   };
 
   return (
@@ -69,7 +72,7 @@ function Search({ onSearch, breweries, hasSearched, onAddToFavourites }) {
                 <button 
                   className={`button is-link mt-3 ${loading ? 'is-loading' : ''}`} 
                   onClick={handleCitySearch}
-                  disabled={loading} // Disable button when loading
+                  disabled={loading}
                 >
                   Search City
                 </button>
@@ -94,7 +97,7 @@ function Search({ onSearch, breweries, hasSearched, onAddToFavourites }) {
                 <button 
                   className={`button is-link mt-3 ${loading ? 'is-loading' : ''}`} 
                   onClick={handleStateSearch}
-                  disabled={loading} // Disable button when loading
+                  disabled={loading}
                 >
                   Search State
                 </button>
@@ -119,7 +122,7 @@ function Search({ onSearch, breweries, hasSearched, onAddToFavourites }) {
                 <button 
                   className={`button is-link mt-3 ${loading ? 'is-loading' : ''}`} 
                   onClick={handleCountrySearch}
-                  disabled={loading} // Disable button when loading
+                  disabled={loading}
                 >
                   Search Country
                 </button>
@@ -144,8 +147,15 @@ function Search({ onSearch, breweries, hasSearched, onAddToFavourites }) {
                       <p><strong>Country:</strong> {brewery.country}</p>
                       <p><strong>Phone Number:</strong> {brewery.phone}</p>
                       <p><strong>Website:</strong> <a href={brewery.website_url} target="_blank" rel="noopener noreferrer">{brewery.website_url}</a></p>
-                      <button className="button is-danger mt-2" onClick={() => onAddToFavourites(brewery)}>Save to Favourites</button>
                     </div>
+                    <footer className="card-footer">
+                      <button
+                        className="card-footer-item button is-success"
+                        onClick={() => handleAddToFavourites(brewery)}
+                      >
+                        Save to Favourites
+                      </button>
+                    </footer>
                   </div>
                 </div>
               ))}

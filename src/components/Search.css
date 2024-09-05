@@ -1,0 +1,29 @@
+.card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .card-content {
+    flex-grow: 1;
+  }
+  
+  .card-footer {
+    margin-top: auto;
+    padding: 0;
+  }
+  
+  .card-footer-item {
+    justify-content: center;
+    padding: 0.75rem;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    border: none;
+    border-radius: 0 0 0.25rem 0.25rem;
+  }
+  
+  .card-footer-item:hover {
+    background-color: #f14668;
+    color: white;
+  }

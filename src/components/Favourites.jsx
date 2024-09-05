@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
+import {ToastContainer, toast} from "react-toastify";
 import "./Favourites.css";
 
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;

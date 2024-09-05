@@ -7,6 +7,11 @@ import Search from './components/Search';
 import About from './components/About';
 import Favourites from './components/Favourites';
 
+// Highlight start: Added import for toast notifications
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+// Highlight end
+
 import './App.css';
 
 function App() {
@@ -48,15 +53,23 @@ function App() {
     }
   };
 
+  // Highlight start: Updated addToFavourites function with toast notifications
   const addToFavourites = (brewery) => {
     if (!favourites.some(fav => fav.id === brewery.id)) {
       setFavourites([...favourites, brewery]);
+      toast.success('Brewery added to favourites');
+    } else {
+      toast.warning('This brewery is already in your favourites');
     }
   };
+  // Highlight end
 
+  // Highlight start: Updated removeFromFavourites function with toast notification
   const removeFromFavourites = (breweryId) => {
     setFavourites(favourites.filter(brewery => brewery.id !== breweryId));
+    toast.error('Brewery removed from favourites');
   };
+  // Highlight end
 
   const fetchBreweries = async ({ city, state, country }) => {
     try {
@@ -108,6 +121,9 @@ function App() {
             } 
           />
         </Routes>
+        {/* Highlight start: Added ToastContainer */}
+        <ToastContainer position="top-right" autoClose={3000} />
+        {/* Highlight end */}
       </div>
     </Router>
   );
