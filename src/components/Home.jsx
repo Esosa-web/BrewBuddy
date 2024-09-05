@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
-import beerImage from '../assets/beer-253791.jpg'
 
 function Home() {
   return (
@@ -11,7 +10,6 @@ function Home() {
         <div
           className="hero-body"
           style={{
-            backgroundImage: `url(${beerImage})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
@@ -29,10 +27,6 @@ function Home() {
                 </Link>
               </div>
             </div>
-            {/* Image Credit */}
-            <p className="has-text-centered is-size-7 mt-4 image-credit">
-              <a href="https://pixabay.com/photos/beer-lemonade-drops-water-fresh-253791/" target="_blank">Image by edjeloop</a>
-            </p>
           </div>
         </div>
       </section>

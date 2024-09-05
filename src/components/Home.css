@@ -133,10 +133,3 @@
   .fade-in-delay {
     color: #333333;
   }
-
-  .image-credit {
-    display: flex;
-    justify-content: end;
-    align-items: flex-end;
-    color: aliceblue;
-  }
