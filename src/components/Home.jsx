@@ -14,12 +14,11 @@ function Home() {
             backgroundImage: `url(${beerImage})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            
           }}
         >
           <div className="container">
             {/* Rounded Opaque Text Box */}
-            <div className="box has-text-centered rounded-box opaque-box">
+            <div className="opaque-box">
               <h1 className="title is-1 fade-in">Welcome to Brew Buddy</h1>
               <h2 className="subtitle is-3 fade-in-delay">
                 Your ultimate companion for discovering amazing breweries!
@@ -32,7 +31,7 @@ function Home() {
             </div>
             {/* Image Credit */}
             <p className="has-text-centered is-size-7 mt-4 image-credit">
-              <a href="https://pixabay.com/photos/beer-varieties-different-sorts-2370783/">Image by edjeloop</a>
+              <a href="https://pixabay.com/photos/beer-lemonade-drops-water-fresh-253791/" target="_blank">Image by edjeloop</a>
             </p>
           </div>
         </div>
