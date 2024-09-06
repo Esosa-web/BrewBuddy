@@ -72,8 +72,8 @@ function Home() {
         <div className="container">
           <div className="columns is-vcentered">
             <div className="column is-8 slide-in-left">
-              <h2 className="title is-3">Ready to find your new favorite brewery?</h2>
-              <p className="subtitle is-5">Start your journey with Brew Buddy today!</p>
+              <h2 className="title is-3 has-text-black">Ready to find your new favorite brewery?</h2>
+              <p className="subtitle is-5 has-text-black">Start your journey with Brew Buddy today!</p>
             </div>
             <div className="column is-4 slide-in-right">
               <Link to="/search" className="button is-primary is-large is-fullwidth hover-grow">

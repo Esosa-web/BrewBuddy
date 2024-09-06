@@ -28,7 +28,7 @@ function About() {
   return (
     <section className="section about-section">
       <div className="container">
-        <h1 className="title is-2 has-text-centered mb-6">About Brew Buddy</h1>
+        <h1 className="title is-2 has-text-centered mb-6 has-text-black">About Brew Buddy</h1>
         <div className="columns is-centered">
           <div className="column is-8">
             <div className="tabs is-centered is-boxed">
