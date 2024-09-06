@@ -11,7 +11,7 @@ function About() {
         Our mission: to create a brew-tiful way for hop enthusiasts and malt maniacs to discover the finest fermented fantasies across the land!
       </p>
     ),
-    api: (
+    API: (
       <p>
         We've tapped into the keg of knowledge that is the <a href="https://www.openbrewerydb.org/" target="_blank" rel="noopener noreferrer">Open Brewery DB API</a>. 
         It's like having a psychic beer-tender who knows every brewery in existence. Spooky, right?
